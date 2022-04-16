@@ -1,1 +1,4 @@
 /.venv/
+config.py
+__pycache__/config.cpython-310.pyc
+.DS_Store
