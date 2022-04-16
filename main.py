@@ -52,6 +52,12 @@ class VkBackup:
         with open(f'{config.JSON_PATH}/upload_json.json', 'w') as file:
             file.write(json.dumps(photo_list, indent=4))
 
+class YaLoader:
+    def __init__(self, ya_token,api,path):
+        self.token = ya_token
+        self.base_url = api
+        self.folder = path
 
-back = VkBackup(config.VK_TOKEN, config.API_VK)
-back.upload_json()
+if __name__ == "__main__":
+    back = VkBackup(config.VK_TOKEN, config.API_VK)
+    back.upload_json()
