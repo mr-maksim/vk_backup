@@ -41,6 +41,7 @@ class VkBackup:
 
     def upload_json(self):
         photo_list = []
+        save_json = []
         last_name = []
         response = self.__vk_response()["response"]
         file_extension = '.jpg'
@@ -49,15 +50,15 @@ class VkBackup:
             size_url = max(size, key=VkBackup.__big_party)
             if str(image['likes']['count'])+file_extension in last_name:
                 date = self.__date_convert(image['date'])
-                photo_list.append({'file_name': date + '_' + str(
-                    image['likes']['count']) + file_extension, 'size': size_url['type'], 'url': size_url['url']})
+                photo_list.append({'file_name': date + '_' + str(image['likes']['count']) + file_extension, 'size': size_url['type'], 'url': size_url['url']})
+                save_json.append({'file_name': date + '_' + str(image['likes']['count']) + file_extension, 'size': size_url['type']})
                 last_name.append(str(image['likes']['count'])+file_extension)
             elif str(image['likes']['count'])+file_extension not in last_name:
-                photo_list.append({'file_name': str(
-                    image['likes']['count']) + file_extension, 'size': size_url['type'], 'url': size_url['url']})
+                photo_list.append({'file_name': str(image['likes']['count']) + file_extension, 'size': size_url['type'], 'url': size_url['url']})
+                save_json.append({'file_name': str(image['likes']['count']) + file_extension, 'size': size_url['type']})
                 last_name.append(str(image['likes']['count'])+file_extension)
         with open(f'{config.JSON_PATH}/upload_json.json', 'w') as file:
-            file.write(json.dumps(photo_list, indent=4))
+            file.write(json.dumps(save_json, indent=4))
             return photo_list
 
 
