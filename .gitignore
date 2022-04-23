@@ -1,3 +1,7 @@
 /.venv/
 __pycache__/config.cpython-310.pyc
 .DS_Store
+main.py
+modules/__pycache__/config.cpython-310.pyc
+modules/__pycache__/vk_class.cpython-310.pyc
+modules/__pycache__/ya_class.cpython-310.pyc

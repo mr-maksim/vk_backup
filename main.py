@@ -1,6 +1,6 @@
+from modules.vk_class import VkBackup
 import modules.config as config
-import modules.vk_class as VkBackup
-import modules.ya_class as YaLoader
+from modules.ya_class import YaLoader
 
 
 if __name__ == "__main__":

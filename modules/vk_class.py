@@ -1,5 +1,5 @@
 import json
-import config
+import modules.config as config
 import requests
 import datetime
 from tqdm import tqdm
