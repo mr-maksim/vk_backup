@@ -6,15 +6,31 @@ from tqdm import tqdm
 
 
 class VkBackup:
-    def __init__(self, vk_token, api, count=5) -> None:
+    def __init__(self, scrn_id, vk_token, api, count=5) -> None:
         self.token = vk_token
         self.base_url = api
         self.count = count
+        self.id = self.__get_id(scrn_id)
+
+    def __get_id(self, scrn_id):
+        if scrn_id.isdigit():
+            return int(scrn_id)
+        else:
+            method = 'utils.resolveScreenName/'
+            href = self.base_url + method
+            params = {
+                'screen_name': scrn_id,
+                'access_token': self.token,
+                'v': 5.131
+            }
+            response = requests.get(href, params=params).json()['response']['object_id']
+            return response
 
     def __vk_response(self):
         method = 'photos.get/'
         href = self.base_url + method
         params = {
+            'owner_id': self.id,
             'album_id': 'profile',
             'extended': 1,
             'count': self.count,
